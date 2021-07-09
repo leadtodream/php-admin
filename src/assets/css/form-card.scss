@@ -1,0 +1,16 @@
+.form-card {
+  margin: 20px auto;
+  width: 600px;
+
+  .submit {
+    float: right;
+    margin-top: -7px;
+    padding: 8px 20px;
+    background-color: #409EFF;
+    border: unset;
+    border-radius: 4px;
+    outline: unset;
+    cursor: pointer;
+    color: #FFF;
+  }
+}

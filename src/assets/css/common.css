@@ -1,0 +1,95 @@
+/* 文字
+---------------------------------------------- */
+.font-bold {font-weight: bold;}
+
+/* 颜色
+---------------------------------------------- */
+.color-primary {color: #409eff!important;}
+.color-success {color: #67c23a!important;}
+.color-warning {color: #e6a23c!important;}
+.color-danger {color: #f56c6c!important;}
+.color-gray {color: #909399;}
+
+/* 位置
+---------------------------------------------- */
+.float-l {float: left;}
+.float-r {float: right;}
+.text-r {text-align: right;}
+
+/* 其它
+---------------------------------------------- */
+.pointer {cursor: pointer;}
+
+/* UI重置
+---------------------------------------------- */
+.main-card {max-width: 800px;margin: 20px auto 0;}
+span.el-avatar {background: unset;}
+.el-footer {text-align: right;}
+.tinymce-container {margin-right: 2px;}
+
+/* 表单
+---------------------------------------------- */
+.input-medium > input {width: 250px;}
+
+/* 表格
+---------------------------------------------- */
+.table-header {margin-bottom: 20px;}
+.table-header::after {content: '';display: table;clear: both;}
+.table-header > .el-input,
+.table-header > .el-select,
+.table-header > .el-date-editor {margin-right: 5px;}
+.table-header > .el-input,
+.table-header > .el-select {width: 200px;}
+.table-header > .el-date-editor {width: 220px!important;}
+.table-header > .el-button-group,
+.table-header > .right {float: right;}
+.el-table thead th {background-color: #f1f1f1;}
+.el-table .el-avatar {margin-right: .5em;vertical-align: middle;}
+.table-filter {margin-bottom: 20px;}
+.table-footer {float: left;margin-top: 40px;}
+.textarea > .cell {white-space: pre-wrap;}
+.table-column-action > .cell {display: flex;justify-content: space-evenly;}
+.table-column-action .el-button {width: 60px;}
+.el-table__row .el-image {margin: 0 2px 2px 0;width: 50px;height: 50px;vertical-align: top;}
+.el-table__row .el-image img {object-fit: cover;cursor: zoom-in;}
+
+/* 详情页
+---------------------------------------------- */
+.info dt {
+  margin: 1em 0 .5em;
+  color: gray;
+}
+
+/* 表单页
+---------------------------------------------- */
+.main-form {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.main-form .el-date-editor--datetimerange.el-input,
+.main-form .el-date-editor--datetimerange.el-input__inner {width: 100%;}
+@media screen and (max-width: 1300px) {
+  .main-form {margin: 20px;}
+}
+
+/* 列表
+---------------------------------------------- */
+ul.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ul.items > li {
+  margin: 0 0 20px 0;
+  color: black;
+}
+ul.items > li:last-child {
+  margin-bottom: 0;
+}
+ul.items > li > span:first-child {
+  display: inline-block;
+  margin-right: 1em;
+  width: 4em;
+  color: gray;
+}

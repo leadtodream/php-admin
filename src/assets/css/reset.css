@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none!important;
+}
+a {
+  text-decoration: none;
+}
+a:visited {
+  color:unset;
+}
+body {
+  background: #f1f1f1;
+  margin: 0;
+}
+label {
+  font-weight: bold;
+}
+main {
+  margin: 20px;
+}
+main > section {
+  padding: 20px;
+  background: white;
+}

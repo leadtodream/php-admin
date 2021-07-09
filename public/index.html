@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      (() => {// 新打开窗口,sessionStorage不共享问题
+        if (!sessionStorage.length) {
+          localStorage.setItem('getSessionStorage', Date.now())
+        }
+        window.addEventListener('storage', event => {
+          if (event.key == 'getSessionStorage') {
+            localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage))
+            localStorage.removeItem('sessionStorage')
+          } else if (event.key === 'sessionStorage' && !sessionStorage.length) {
+            const data = JSON.parse(event.newValue)
+            for (key in data) {
+              sessionStorage.setItem(key, data[key])
+            }
+          }
+        })
+      })()
+    </script>
+  </body>
+</html>
