@@ -1,11 +1,11 @@
 <template>
-  <main class="chat-box">
-    <button type="button" @click="connect">连接</button>
+  <section class="chat-box">
     <div class="people-list">
+      <button type="button" @click="connect">连接</button>
       <p v-show="!list_user.length" class="el-alert el-alert--info is-center is-light">暂无用户连线</p>
       <ul class="list">
-        <template v-for="(item, index) in list_user">
-          <li :key="index" class="clearfix" :class="{active:index===list_user_index}" @click="changeUser(index)">
+        <template v-for="(item, index) in list_user" :key="index">
+          <li class="clearfix" :class="{active:index===list_user_index}" @click="changeUser(index)">
             <img :src="item.avatar" alt="avatar">
             <div class="about">
               <div class="name">{{ item.nickname }}</div>
@@ -20,8 +20,8 @@
     <div class="chat">
       <div class="chat-history">
         <ul>
-          <template v-for="(item,index) in list_msg">
-            <li v-if="item.sender==1" :key="index" class="clearfix">
+          <template v-for="(item,index) in list_msg" :key="index">
+            <li v-if="item.sender==1" class="clearfix">
               <div class="message-data align-right">
                 <span class="message-data-time">{{ item.created_at }}</span>
                 <span class="message-data-name">我</span>
@@ -29,7 +29,7 @@
               </div>
               <div class="message other-message float-right">{{ item.content }}</div>
             </li>
-            <li v-else :key="index">
+            <li v-else>
               <div class="message-data">
                 <span class="message-data-name">
                   <i class="fa fa-circle online" />
@@ -43,15 +43,14 @@
         </ul>
       </div>
       <div class="chat-message clearfix">
-        <el-input v-model="form.content" type="textarea" autosize placeholder="请输入内容" @keyup.enter="sendMessage" />
-        <el-button type="success" @click="sendMessage">发送</el-button>
+        <textarea v-model="form.content" class="textarea" placeholder="请输入内容" />
+        <button class="el-button el-button--success send-msg" type="button" @click="sendMessage">发送</button>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import ajax from '@/assets/ajax'
 import socket from '@/assets/socket'
 
 export default {
@@ -140,7 +139,7 @@ export default {
     // 发送消息
     sendMessage() {
       const user = this.list_user[this.list_user_index]
-      // if (!user) return
+      if (!user) return
 
       const data = { ...this.form }
       if (!data.content) return
@@ -159,12 +158,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .chat-box {
   display: flex;
-  margin: 30px auto 0;
-  padding: 0 15px;
+  margin: auto;
   max-width: 1000px;
+  height: calc(100vh - 130px);
   background: #444753;
   border-radius: 5px;
 }
@@ -196,7 +195,6 @@ export default {
 }
 .people-list ul {
   padding-right: 15px;
-  height: 770px;
 }
 .people-list ul li {
   margin: 10px 0;
@@ -259,7 +257,7 @@ export default {
   padding: 30px 30px 20px;
   border-bottom: 2px solid white;
   overflow-y: scroll;
-  height: calc(100% - 112px)
+  height: calc(100% - 200px)
 }
 .chat .chat-history .message-data {
   margin-bottom: 15px;
@@ -301,9 +299,23 @@ export default {
   border-bottom-color: #94C2ED;
   left: 93%;
 }
-.chat .chat-message {
-  display: flex;
-  padding: 30px;
+
+.chat-message {
+  background: white;
+  
+  .textarea {
+    display: block;
+    width: 100%;
+    height: 10em;
+    border: none;
+    padding: 1em;
+    outline: none;
+    resize: none;
+  }
+
+  .send-msg {
+    float: right;
+  }
 }
 .chat .chat-message input {
   width: 100%;

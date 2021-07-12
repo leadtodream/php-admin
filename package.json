@@ -1,7 +1,12 @@
 {
-  "name": "admin",
-  "version": "0.1.0",
-  "private": true,
+  "name": "green-admin",
+  "version": "1.0.0",
+  "description": "基于vue3，element-plus搭建的web后台管理系统",
+  "keywords": [
+    "admin",
+    "element-plus",
+    "vue3"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

@@ -60,7 +60,7 @@ const socket = {
     }
 
     ws.onerror = (e) => {
-      console.log('WebSocket error --------------------')
+      console.log('WebSocket error --------------------', e)
     }
 
     ws.onclose = () => {
