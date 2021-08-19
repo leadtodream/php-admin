@@ -18,7 +18,7 @@
       </el-table-column>
       <el-table-column label="发布时间" prop="created_at" width="200" />
     </el-table>
-    <pagination v-show="total>0" :total="total" :page="list_query.page" :limit="list_query.size" @pagination="getList" />
+    <pagination v-model:page="list_query.page" v-model:size="list_query.size" :total="total" @changed="getList" />
     <!-- 弹窗表单 -->
     <el-dialog title="版本信息" width="500px" v-model="is_show">
       <el-form label-width="5em">

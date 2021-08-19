@@ -25,7 +25,7 @@
       </el-table-column>
     </el-table>
     <!-- 表格-底部 -->
-    <pagination v-show="total>0" :total="total" :page="list_query.page" :limit="list_query.size" @pagination="getList" />
+    <pagination v-model:page="list_query.page" v-model:size="list_query.size" :total="total" @changed="getList" />
   </section>
 </template>
 

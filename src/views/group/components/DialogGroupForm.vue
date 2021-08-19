@@ -21,7 +21,6 @@
 import ajax from '@/assets/ajax'
 
 export default {
-  name: 'DialogGroupForm',
   data() {
     return {
       id: 0,

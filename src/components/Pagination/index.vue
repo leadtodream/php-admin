@@ -1,16 +1,14 @@
 <template>
-  <div :class="{'hidden':hidden}" class="pagination-container">
+  <div class="pagination-container" :hidden="total===0">
     <el-pagination
-      :background="background"
-      :current-page="currentPage"
-      :page-size="pageSize"
-      :layout="layout"
-      :page-sizes="pageSizes"
+      layout="total,sizes,prev,pager,next,jumper"
+      :background="true"
+      :current-page="page"
+      :page-sizes="[5, 10, 25, 50]"
+      :page-size="10"
       :total="total"
-      v-bind="$attrs"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-    />
+      @current-change="changePage"
+      @size-change="changeSize" />
   </div>
 </template>
 
@@ -18,72 +16,28 @@
 export default {
   name: 'Pagination',
   props: {
-    total: {
-      required: true,
-      type: Number
-    },
     page: {
       type: Number,
-      default: 1
+      default: 1,
     },
-    limit: {
+    size: {
       type: Number,
-      default: 20
+      default: 10,
     },
-    pageSizes: {
-      type: Array,
-      default() {
-        return [5, 10, 25, 50]
-      }
+    total: {
+      type: Number,
+      default: 0,
     },
-    layout: {
-      type: String,
-      default: 'total, sizes, prev, pager, next, jumper'
-    },
-    background: {
-      type: Boolean,
-      default: true
-    },
-    autoScroll: {
-      type: Boolean,
-      default: false
-    },
-    hidden: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    currentPage: {
-      get() {
-        return this.page
-      },
-      set(val) {
-        this.$emit('update:page', val)
-      }
-    },
-    pageSize: {
-      get() {
-        return this.limit
-      },
-      set(val) {
-        this.$emit('update:limit', val)
-      }
-    }
   },
   methods: {
-    handleSizeChange(val) {
-      this.$emit('pagination', { page: this.currentPage, limit: val })
-      if (this.autoScroll) {
-        window.scroll(0,0)
-      }
+    changePage(val) {
+      this.$emit('update:page', val)
+      this.$emit('changed')
     },
-    handleCurrentChange(val) {
-      this.$emit('pagination', { page: val, limit: this.pageSize })
-      if (this.autoScroll) {
-        window.scroll(0,0)
-      }
-    }
+    changeSize(val) {
+      this.$emit('update:size', val)
+      this.$emit('changed')
+    },
   }
 }
 </script>
@@ -94,8 +48,5 @@ export default {
   padding: 32px 16px;
   margin-top: 10px;
   text-align: right;
-}
-.pagination-container.hidden {
-  display: none;
 }
 </style>
