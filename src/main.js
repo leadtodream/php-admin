@@ -11,7 +11,7 @@ import './guard'
 
 
 createApp(App).use(store)
-  .use(ElementPlus, { locale })
+  .use(ElementPlus, { locale, zIndex: 10 })
   .use(Svgs)
   .use(router)
   .mount('#app')

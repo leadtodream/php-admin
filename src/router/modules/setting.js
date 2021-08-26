@@ -14,6 +14,12 @@ export default {
       meta: { title: '角色' },
     },
     {
+      path: '/setting/administrators',
+      name: 'Admin',
+      component: () => import('@/views/setting/Admin'),
+      meta: { title: '管理员' },
+    },
+    {
       path: '/setting/config',
       name: 'Config',
       component: () => import('@/views/setting/Config'),

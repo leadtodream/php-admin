@@ -1,9 +1,8 @@
 import router from './router'
 import store from './store'
-import { ElMessage as Message } from 'element-plus'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getAuth, removeAuth } from '@/assets/auth'
+import { getAuth } from '@/assets/auth'
 import { title } from '@/settings'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
@@ -27,24 +26,18 @@ router.beforeEach(async (to, from, next) => {
       NProgress.done() // hack: https://github.com/PanJiaChen/vue-element-admin/pull/2939
     } else {
       // determine whether the user has obtained his permission roles through getInfo
-      if (store.getters.myRoutes.length) {
+      if (store.state.user.privileges) {
         next()
       } else {
         // 查询用户权限
         const privileges = await store.dispatch('user/getInfo')
-        if (!privileges.length) {
-          Message.error('一点权限都没有 (⋟﹏⋞)')
-          removeAuth()
-          next('/login')
-          NProgress.done()
-          return false
+        if (privileges.length) {
+          // 分配路由
+          const routes = await store.dispatch('privilege/generateRoutes', privileges)
+
+          // dynamically add accessible routes
+          routes.forEach(i => router.addRoute(i))
         }
-
-        // 分配路由
-        const routes = await store.dispatch('privilege/generateRoutes', privileges)
-
-        // dynamically add accessible routes
-        routes.forEach(i => router.addRoute(i))
 
         // hack method to ensure that addRoutes is complete
         // set the replace: true, so the navigation will not leave a history record

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row :gutter="20">
-      <el-col :span="12">
+      <el-col :span="12" :offset="6">
         <div class="grid-content">
           <el-avatar class="avatar float-r" shape="square" :size="100" :src="info.img" />
           <div class="item">
@@ -36,29 +36,6 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="12">
-        <el-form ref="form" class="grid-content form" :model="form" label-width="5em">
-          <el-form-item label="角色">
-            <el-select v-model="form.role_id" placeholder="请选择所属角色" clearable>
-              <el-option v-for="item in list_role" :key="item.id" :label="item.name" :value="item.id" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="分组">
-            <el-select v-model="form.group_id" placeholder="请选择所属分组" clearable>
-              <el-option v-for="item in list_group" :key="item.id" :label="item.name" :value="item.id" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="账号">
-            <el-input v-model="form.username" />
-          </el-form-item>
-          <el-form-item label="密码">
-            <el-input v-model="form.password" />
-          </el-form-item>
-          <el-form-item class="text-r">
-            <el-button type="primary" @click="saveInfo">保 存</el-button>
-          </el-form-item>
-        </el-form>
-      </el-col>
     </el-row>
     <!-- 弹窗 -->
     <DialogMoney ref="dialogMoney" @changed="getInfo" />
@@ -72,7 +49,6 @@ import DialogMoney from './components/DialogMoney'
 import DialogParent from './components/DialogParent'
 import DialogPoint from './components/DialogPoint'
 import ajax from '@/assets/ajax'
-import { queryGroup, queryRole } from '@/assets/methods-query'
 
 export default {
   name: 'UserDetail',
@@ -94,30 +70,19 @@ export default {
         nickname: '',
         phone: '',
       },
-      form: {
-        group_id: '',
-        role_id: '',
-        username: '',
-        password: '',
-      },
-      list_group: [],
-      list_role: [],
     }
   },
   computed: {
     parentName() {
-      return `${this.parent.realname || this.parent.nickname} ${this.parent.phone}`
+      return `${this.parent.realname || this.parent.nickname} - ${this.parent.phone}`
     },
   },
   created() {
     const { id } = this.$route.params
     this.id = Number(id)
     this.getInfo()
-    this.queryRole()
-    this.queryGroup()
   },
   methods: {
-    ...{ queryGroup, queryRole },
     showDialogMoney() {
       this.$refs.dialogMoney.showDialog(this.id)
     },
@@ -134,8 +99,6 @@ export default {
 
           Object.assign(this.info, res.info)
           Object.assign(this.parent, parent)
-          this.form.role_id = res.info.role_id || ''
-          this.form.username = res.info.username
         })
     },
     saveInfo() {

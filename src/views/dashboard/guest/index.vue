@@ -1,12 +1,7 @@
 <template>
   <div class="container">
     <img src="https://wpimg.wallstcn.com/0e03b7da-db9e-4819-ba10-9016ddfdaed3" class="emptyGif">
-    <button
-      v-if="is_shop"
-      type="button"
-      class="el-button el-button--primary el-button--medium"
-      @click="toShop"
-    >去我的店铺</button>
+    <p>没有任何权限！</p>
   </div>
 </template>
 
@@ -38,18 +33,16 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .container {
   background: #E3E3E3;
 }
-  img {
-    display: block;
-    width: 45%;
-    margin: 0 auto;
-  }
-  button {
-    display: block;
-    margin: auto;
-    transform: translateY(60px);
-  }
+img {
+  display: block;
+  width: 45%;
+  margin: 0 auto;
+}
+p {
+  text-align: center;
+}
 </style>

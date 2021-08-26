@@ -11,10 +11,10 @@ import guest from './guest'
 export default {
   name: 'Dashboard',
   components: { admin, guest },
-  data() {
-    return {
-      currentRole: 'guest',
-    }
+  computed: {
+    currentRole() {
+      return this.$store.state.user.privileges.length ? 'admin' : 'guest'
+    },
   },
 }
 </script>

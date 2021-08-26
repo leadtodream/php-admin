@@ -1,9 +1,18 @@
 <template>
   <div>
-    <el-dialog title="分组信息" width="500px" v-model="is_show">
+    <el-dialog title="管理员信息" width="500px" v-model="is_show">
       <el-form label-width="5em">
-        <el-form-item label="名称" required>
-          <el-input v-model="form.name" />
+        <el-form-item label="账号" required>
+          <el-input v-model="form.username" />
+        </el-form-item>
+        <el-form-item label="密码" :required="id===0">
+          <el-input v-model="form.password" />
+        </el-form-item>
+        <el-form-item label="电话">
+          <el-input v-model="form.phone" />
+        </el-form-item>
+        <el-form-item label="邮箱">
+          <el-input v-model="form.email" />
         </el-form-item>
         <el-form-item label="简介">
           <el-input v-model="form.intro" />
@@ -25,23 +34,28 @@ export default {
     return {
       id: 0,
       form: {
-        name: '',
+        email: '',
         intro: '',
+        password: '',
+        phone: '',
+        username: '',
       },
+      form_copy: {},
       is_show: false,
     }
   },
   props: ['api'],
+  created() {
+    Object.assign(this.form_copy, this.form)
+  },
   methods: {
     show(info) {
       if (info) {
         this.id = info.id
-        this.form.name = info.name
-        this.form.intro = info.intro
+        Object.assign(this.form, info)
       } else {
         this.id = 0
-        this.form.name = ''
-        this.form.intro = ''
+        Object.assign(this.form, this.form_copy)
       }
 
       this.is_show = true

@@ -12,7 +12,7 @@
             <template #prepend>邮箱</template>
           </el-input>
           <div class="el-input el-input-group el-input-group--append">
-            <input v-model.number="form.code" autocomplete="off" placeholder="请填写验证码" class="el-input__inner" maxlength="6">
+            <input v-model="form.code" autocomplete="off" placeholder="请填写验证码" class="el-input__inner" maxlength="6">
             <div class="el-input-group__append pointer" @click="sendCode">{{ text }}</div>
           </div>
         </fieldset>
@@ -81,9 +81,9 @@ export default {
       if (this.is_loading) return
       this.is_loading = true
 
-      let url = '/sign-in'
+      let url = '/sign-in/admin'
       if (this.type) {
-        url = `${url}/email`
+        url = '/sign-in/admin-email'
       }
 
       ajax.post(url, this.form)

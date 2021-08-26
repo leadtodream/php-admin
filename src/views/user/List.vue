@@ -3,9 +3,6 @@
     <!-- 表格-头部 -->
     <div class="table-header">
       <el-input v-model="list_query.keyword" placeholder="关键字" />
-      <el-select v-model="list_query.role_id" placeholder="筛选角色" clearable>
-        <el-option v-for="item in list_role" :key="item.id" :label="item.name" :value="item.id" />
-      </el-select>
       <el-button plain type="primary" icon="el-icon-search" @click="listSearch">搜索</el-button>
       <el-button plain icon="el-icon-circle-close" @click="listReset">重置</el-button>
     </div>
@@ -30,9 +27,8 @@
           <el-switch v-model="scope.row.is_ban" active-color="#ff4949" @change="patchBan(scope.row.id)" />
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" prop="created_at" width="160" />
-      <el-table-column label="更新时间" prop="updated_at" width="160" />
-      <el-table-column label="操作" align="center" width="160" class-name="table-column-action">
+      <el-table-column label="注册时间" prop="created_at" width="160" />
+      <el-table-column label="操作" align="center" width="160">
         <template #default="scope">
           <el-button plain type="info" size="mini" icon="el-icon-view" title="查看" @click="toDetail(scope.row.id)" />
         </template>
@@ -47,7 +43,6 @@
 import Pagination from '@/components/Pagination'
 import ajax from '@/assets/ajax'
 import methods from '@/assets/methods-list'
-import { queryRole } from '@/assets/methods-query'
 
 export default {
   name: 'UserList',
@@ -65,23 +60,19 @@ export default {
         page: 1,
         size: 10,
         keyword: '',
-        role_id: '',
         is_ban: '',
       },
-      list_role: [],
       is_loading: false,
     }
   },
   created() {
     this.listInit()
-    this.queryRole()
   },
   activated() {
     this.getList()
   },
   methods: {
     ...methods,
-    queryRole,
     patchBan(id) {
       ajax.patch(`${this.api}/${id}/ban`)
         .then(() => {

@@ -47,8 +47,12 @@
           <el-input v-model="form.weixin_mch.mch_id" />
         </div>
         <div class="item">
-          <label>商户密钥</label>
+          <label>API密钥</label>
           <el-input v-model="form.weixin_mch.mch_key" />
+        </div>
+        <div class="item">
+          <label>APIv3密钥</label>
+          <el-input v-model="form.weixin_mch.mch_key_v3" />
         </div>
         <div class="item">
           <label>证书cert</label>
@@ -145,7 +149,7 @@ export default {
         tencent_sms:{id:'',key:''},
         weixin_app:{app_id:'',app_secret:''},
         weixin_h5:{app_id:'',app_secret:''},
-        weixin_mch:{mch_id:'',mch_key:'',sslcert:'',sslkey:''},
+        weixin_mch:{mch_id:'',mch_key:'',mch_key_v3:'',sslcert:'',sslkey:''},
         weixin_mini:{app_id:'',app_secret:''},
         weixin_offi:{app_id:'',app_secret:''},
       },
