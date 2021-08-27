@@ -5,7 +5,7 @@ import store from './store'
 import ElementPlus from 'element-plus'
 import Svgs from './assets/svg'
 import locale from 'element-plus/lib/locale/lang/zh-cn'
-import 'element-plus/lib/theme-chalk/index.css'
+import 'element-plus/dist/index.css'
 import 'dayjs/locale/zh-cn'
 import './guard'
 

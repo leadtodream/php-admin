@@ -17,7 +17,7 @@
         @select="selectMenu" 
       >
         <template v-for="i in menus">
-          <el-submenu v-if="i.children.length > 1" :key="i.path" :index="i.path">
+          <el-sub-menu v-if="i.children.length > 1" :key="i.path" :index="i.path">
             <template #title>
               <SvgIcon :name="i.meta.icon" />
               <span>{{ i.meta && i.meta.title }}</span>
@@ -25,7 +25,7 @@
             <el-menu-item v-for="j in i.children" :key="j.path" :index="j.path">
               <template #title>{{ j.meta.title }}</template>
             </el-menu-item>
-          </el-submenu>
+          </el-sub-menu>
           <el-menu-item v-else-if="i.children.length" :key="i.children[0].path" :index="i.children[0].path">
             <SvgIcon :name="i.meta.icon" />
             <template #title>
