@@ -168,10 +168,13 @@ export default {
     set() {
       ajax.put('/admin/setting/thirdauth', this.form)
         .then(() => {
+          delete this.form.weixin_mch_sslcert
+          delete this.form.weixin_mch_sslkey
+          this.get()
           this.$message.success('保存成功')
         })
     },
-    // 上传文件
+    // 上传微信证书
     uploadFile(file, e) {
       const data = new FormData()
       data.append('file', e.target.files[0])
@@ -179,9 +182,9 @@ export default {
         .then(res => {
           const filename = res.filename
           if (file === 'cert') {
-            this.form.weixin_mch.sslcert = filename
+            this.form.weixin_mch_sslcert = filename
           } else {
-            this.form.weixin_mch.sslkey = filename
+            this.form.weixin_mch_sslkey = filename
           }
         })
     },
