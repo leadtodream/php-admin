@@ -79,13 +79,18 @@
           <el-input v-model="form.alipay_app.public_key" type="textarea" />
         </div>
       </el-tab-pane>
-      <el-tab-pane label="腾讯位置服务" name="tencent_map">
+      <el-tab-pane label="腾讯云API" name="tencent">
         <div class="item">
-          <label>应用 Key</label>
-          <el-input v-model="form.tencent_map.key" />
+          <label>SecretId</label>
+          <el-input v-model="form.tencent.id" />
         </div>
+        <div class="item">
+          <label>SecretKey</label>
+          <el-input v-model="form.tencent.key" />
+        </div>
+        <a class="el-link el-link--info" href="https://console.cloud.tencent.com/cam/capi" target="_blank">如何获取？</a>
       </el-tab-pane>
-      <el-tab-pane label="腾讯短信" name="tencent_sms">
+      <el-tab-pane label="腾讯云短信" name="tencent_sms">
         <div class="item">
           <label>SDK AppID</label>
           <el-input v-model="form.tencent_sms.id" />
@@ -94,38 +99,36 @@
           <label>App Key</label>
           <el-input v-model="form.tencent_sms.key" />
         </div>
+        <a class="el-link el-link--info" href="https://console.cloud.tencent.com/smsv2/app-manage" target="_blank">如何获取？</a>
       </el-tab-pane>
-      <el-tab-pane label="阿里云短信" name="aliyun_sms">
+      <el-tab-pane label="腾讯位置服务" name="tencent_map">
         <div class="item">
-          <label>签名</label>
-          <el-input v-model="form.aliyun_sms.sign" />
+          <label>应用 Key</label>
+          <el-input v-model="form.tencent_map.key" />
         </div>
-        <div class="item">
-          <label>ID</label>
-          <el-input v-model="form.aliyun_sms.id" />
-        </div>
-        <div class="item">
-          <label>Secret</label>
-          <el-input v-model="form.aliyun_sms.secret" />
-        </div>
+        <a class="el-link el-link--info" href="https://lbs.qq.com/dev/console/application/mine" target="_blank">如何获取？</a>
       </el-tab-pane>
-      <el-tab-pane label="七牛云" name="qiniu">
+      <el-tab-pane label="阿里云API" name="aliyun">
         <div class="item">
-          <label>AccessKey</label>
+          <label>AccessKey ID</label>
+          <el-input v-model="form.aliyun.id" />
+        </div>
+        <div class="item">
+          <label>AccessKey Secret</label>
+          <el-input v-model="form.aliyun.secret" />
+        </div>
+        <a class="el-link el-link--info" href="https://usercenter.console.aliyun.com" target="_blank">如何获取？</a>
+      </el-tab-pane>
+      <el-tab-pane label="七牛云API" name="qiniu">
+        <div class="item">
+          <label>AK</label>
           <el-input v-model="form.qiniu.access_key" />
         </div>
         <div class="item">
-          <label>SecretKey</label>
+          <label>SK</label>
           <el-input v-model="form.qiniu.secret_key" />
         </div>
-        <div class="item">
-          <label>空间名称</label>
-          <el-input v-model="form.qiniu.bucket" />
-        </div>
-        <div class="item">
-          <label>空间域名</label>
-          <el-input v-model="form.qiniu.bucket_host" />
-        </div>
+        <a class="el-link el-link--info" href="https://portal.qiniu.com/user/key" target="_blank">如何获取？</a>
       </el-tab-pane>
     </el-tabs>
     <el-footer>
@@ -142,16 +145,17 @@ export default {
   data() {
     return {
       form: {
-        alipay_app:{app_id:'',app_key:'',public_key:''},
-        aliyun_sms:{sign:'',id:'',secret:''},
+        alipay_app: {app_id:'',app_key:'',public_key:''},
+        aliyun: {id:'',secret:''},
         qiniu: {access_key:'',bucket:'',bucket_host:'',secret_key:''},
-        tencent_map:{key:''},
-        tencent_sms:{id:'',key:''},
-        weixin_app:{app_id:'',app_secret:''},
-        weixin_h5:{app_id:'',app_secret:''},
-        weixin_mch:{mch_id:'',mch_key:'',mch_key_v3:'',sslcert:'',sslkey:''},
-        weixin_mini:{app_id:'',app_secret:''},
-        weixin_offi:{app_id:'',app_secret:''},
+        tencent: {id:'',key:''},
+        tencent_map: {key:''},
+        tencent_sms: {id:'',key:''},
+        weixin_app: {app_id:'',app_secret:''},
+        weixin_h5: {app_id:'',app_secret:''},
+        weixin_mch: {mch_id:'',mch_key:'',mch_key_v3:'',sslcert:'',sslkey:''},
+        weixin_mini: {app_id:'',app_secret:''},
+        weixin_offi: {app_id:'',app_secret:''},
       },
     }
   },
@@ -192,7 +196,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .el-tabs {
   margin-bottom: 20px;
 }
@@ -201,16 +205,15 @@ export default {
   display: flex;
   align-items: center;
   margin: 20px 0;
-
-  label {
-    margin-right: 1em;
-    min-width: 4em;
-    color: #606266;
-    white-space: nowrap;
-  }
 }
 
-::v-deep(.el-tag) {
+.item > label {
   margin-right: 1em;
+  min-width: 5em;
+  color: #606266;
 }
+
+::v-deep(.el-tag) {margin-right: 1em;}
+::v-deep(.el-input),
+::v-deep(.el-textarea) {flex: 1;}
 </style>

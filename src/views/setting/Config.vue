@@ -20,17 +20,17 @@
           </el-form-item>
           <el-form-item label="最低金额" prop="withdraw_min">
             <el-input v-model="form.withdraw_min" class="width-short" placeholder="空则不限制">
-              <template gg="append">元</template>
+              <template #append>元</template>
             </el-input>
           </el-form-item>
           <el-form-item label="最高金额" prop="withdraw_max">
             <el-input v-model="form.withdraw_max" class="width-short" placeholder="空则不限制">
-              <template gg="append">元</template>
+              <template #append>元</template>
             </el-input>
           </el-form-item>
           <el-form-item label="手续费" prop="withdraw_tax">
             <el-input v-model="form.withdraw_tax" class="width-short" placeholder="空则无手续费">
-              <template gg="append">%</template>
+              <template #append>%</template>
             </el-input>
           </el-form-item>
         </el-tab-pane>
@@ -41,10 +41,10 @@
           <el-form-item label="邀请奖励" prop="point_invite">
             <el-input v-model="form.point_invite" placeholder="空则不奖励" />
           </el-form-item>
-          <el-form-item label="积分换算" prop="point2money">
-            <el-input v-model="form.point2money" placeholder="空则不支持兑换">
-              <template gg="prepend">1积分</template>
-              <template gg="append">元</template>
+          <el-form-item label="积分充值" prop="point_recharge">
+            <el-input v-model="form.point_recharge" placeholder="空则不支持充值">
+              <template #prepend>1积分</template>
+              <template #append>元</template>
             </el-input>
           </el-form-item>
         </el-tab-pane>
@@ -67,7 +67,7 @@ export default {
         system_state: 1,
         point_sign: '',
         point_invite: '',
-        point2money: '',
+        point_recharge: '',
         withdraw: 1,
         withdraw_check: 1,
         withdraw_max: '',
@@ -75,7 +75,7 @@ export default {
         withdraw_tax: '',
       },
       form_rule: {
-        point2money: [
+        point_recharge: [
           { pattern: /^\d+(\.\d+)?$/, message: '不合法', trigger: 'blur' },
         ],
         point_invite: [

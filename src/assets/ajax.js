@@ -107,7 +107,7 @@ function uploadImage(file, module = '') {
     const form = new FormData()
     form.append('file', file)
     form.append('module', module)
-    instance.post('/upload/image', form)
+    instance.post('/admin/upload/image', form)
       .then(res => {
         resolve(res.url)
       })
