@@ -2,16 +2,12 @@
   <section>
     <el-tabs v-model="module">
       <el-tab-pane label="文章" name="article" />
-      <el-tab-pane label="书籍" name="book" />
-      <el-tab-pane label="电影" name="movie" />
-      <el-tab-pane label="收入" name="money_plus" />
-      <el-tab-pane label="支出" name="money_minus" />
       <el-tab-pane label="商家" name="shop" />
       <el-tab-pane label="商品" name="shop_goods" />
     </el-tabs>
     <el-header class="filter-bar" height="auto">
       <el-input v-model="keyword" placeholder="输入关键字进行过滤" clearable />
-      <el-button type="primary" @click="add">添加类目</el-button>
+      <el-button type="primary" @click="add(0)">添加类目</el-button>
     </el-header>
     <!-- 树形结构数据 -->
     <el-tree
@@ -76,8 +72,8 @@ export default {
     },
   },
   methods: {
-    add() {
-      this.$refs['dialogCategoryForm'].show()
+    add(parent_id) {
+      this.$refs['dialogCategoryForm'].show(parent_id)
     },
     edit(item) {
       this.$refs['dialogCategoryForm'].show(item)

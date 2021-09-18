@@ -38,7 +38,7 @@ export default {
   props: ['api'],
   methods: {
     show(info) {
-      if (info) {
+      if (typeof info === 'object') {
         this.id = info.id
         this.form.img = info.img
         this.form.name = info.name
@@ -47,7 +47,7 @@ export default {
         this.id = 0
         this.form.img = ''
         this.form.name = ''
-        this.form.parent_id = 0
+        this.form.parent_id = info
       }
 
       this.is_show = true
