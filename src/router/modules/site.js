@@ -85,11 +85,5 @@ export default {
         },
       ],
     },
-    // {
-    //   path: '/site/customer',
-    //   name: 'Customer',
-    //   component: () => import('@/views/site/Customer'),
-    //   meta: { title: '在线客服' },
-    // },
   ],
 }

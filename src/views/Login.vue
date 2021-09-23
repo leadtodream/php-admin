@@ -5,7 +5,7 @@
       <div class="fieldset-container" :class="{translate:type===1}">
         <fieldset>
           <el-input v-model="form.username" placeholder="账号" />
-          <el-input v-model="form.password" placeholder="密码" show-password />
+          <el-input v-model="form.password" placeholder="密码" show-password @keyup.enter="submit" />
         </fieldset>
         <fieldset>
           <el-input placeholder="请填写邮箱地址" v-model="form.email">
