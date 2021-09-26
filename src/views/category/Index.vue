@@ -21,6 +21,7 @@
       :allow-drag="() => true"
       :accordion="true"
       :default-expand-all="false"
+      :filter-node-method="filterTree"
       @node-drop="saveSort"
     >
       <template #default="{ node, data }">
@@ -64,7 +65,7 @@ export default {
   },
   watch: {
     keyword(value) {
-      this.$refs.tree.filter(value)
+      this.$refs['tree'].filter(value)
     },
     module() {
       this.list = []
@@ -84,6 +85,10 @@ export default {
           this.$message.success('删除成功')
           this.getList()
         })
+    },
+    filterTree(value, data) {
+      if (!value) return true
+      return data.name.indexOf(value) !== -1
     },
     getList() {
       ajax.get(this.api)
