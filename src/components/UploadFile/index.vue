@@ -4,7 +4,7 @@
       <input class="el-input__inner" readonly :value="filename">
       <label class="el-input-group__append pointer">
         选择文件
-        <input ref="input-file" type="file" hidden :accept="accept" @change="upload">
+        <input ref="input" type="file" hidden :accept="accept" @change="upload">
       </label>
     </div>
     <el-progress :hidden="progress===100" :percentage="progress" />
@@ -52,7 +52,7 @@ export default {
         .catch(() => 1)
         .finally(() => {
           this.is_waiting = false
-          this.$refs['input-file'].value = null
+          this.$refs['input'].value = null
         })
     },
     uploadProgress(e) {

@@ -1,7 +1,7 @@
 <template>
   <label>
     <img :src="imgSrc" :style="imgStyle">
-    <input type="file" accept="image/*" hidden @change="uploadImg">
+    <input ref="input" type="file" accept="image/*" hidden @change="uploadImg">
   </label>
 </template>
 
@@ -47,6 +47,9 @@ export default {
           .then(res => {
             this.$emit('update:modelValue', res)
             this.$emit('changed')
+          })
+          .finally(() => {
+            this.$refs['input'].value = null
           })
       }
     },
