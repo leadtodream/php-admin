@@ -2,8 +2,8 @@
   <el-row :gutter="40" class="panel-group">
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-people">
-          <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+        <div class="card-panel-icon-wrapper">
+          <svg-icon name="peoples" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">用户</div>
@@ -13,8 +13,8 @@
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-message">
-          <svg-icon icon-class="shop" class-name="card-panel-icon" />
+        <div class="card-panel-icon-wrapper">
+          <svg-icon name="shop" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">商家</div>
@@ -24,8 +24,8 @@
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-money">
-          <svg-icon icon-class="goods" class-name="card-panel-icon" />
+        <div class="card-panel-icon-wrapper">
+          <svg-icon name="goods" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">商品</div>
@@ -35,8 +35,8 @@
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-shopping">
-          <svg-icon icon-class="order" class-name="card-panel-icon" />
+        <div class="card-panel-icon-wrapper">
+          <svg-icon name="order" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">订单</div>
@@ -73,23 +73,6 @@ export default {
     box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);
     border-color: rgba(0, 0, 0, .05);
 
-
-    .icon-people {
-      color: #40c9c6;
-    }
-
-    .icon-message {
-      color: #36a3f7;
-    }
-
-    .icon-money {
-      color: #f4516c;
-    }
-
-    .icon-shopping {
-      color: #34bfa3
-    }
-
     .card-panel-icon-wrapper {
       float: left;
       margin: 14px 0 0 14px;
@@ -121,6 +104,19 @@ export default {
       }
     }
   }
+}
+
+.card-panel-col:first-child .card-panel-icon-wrapper {
+  color: #40c9c6;
+}
+.card-panel-col:nth-child(2) .card-panel-icon-wrapper {
+  color: #36a3f7;
+}
+.card-panel-col:nth-child(3) .card-panel-icon-wrapper {
+  color: #f4516c;
+}
+.card-panel-col:nth-child(4) .card-panel-icon-wrapper {
+  color: #34bfa3
 }
 
 @media (max-width:550px) {
