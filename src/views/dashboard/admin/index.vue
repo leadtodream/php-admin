@@ -67,7 +67,7 @@ export default {
       if (this.is_loading) return
       this.is_loading = true
 
-      ajax.get('/admin/home')
+      ajax.get('/admin/dashboard')
         .then(res => {
           this.count = res.count
         })
