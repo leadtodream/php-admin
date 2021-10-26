@@ -11,10 +11,16 @@
             <span>姓名：</span>{{ info.realname }}
           </div>
           <div class="item">
-            <span>性别：</span>{{ info.gender }}
+            <span>性别：</span>{{ genderStr }}
+          </div>
+          <div class="item">
+            <span>生日：</span>{{ info.birthday }}
           </div>
           <div class="item">
             <span>手机号：</span>{{ info.phone }}
+          </div>
+          <div class="item">
+            <span>邮箱：</span>{{ info.email }}
           </div>
           <div class="item">
             <span>所在地：</span>{{ info.region }}
@@ -53,15 +59,11 @@ import ajax from '@/assets/ajax'
 export default {
   name: 'UserDetail',
   components: { DialogMoney, DialogParent, DialogPoint },
-  filters: {
-    genderStr(value) {
-      return value === 1 ? '男' : (value === 2 ? '女' : '')
-    },
-  },
   data() {
     return {
       id: 0,
       info: {
+        gender: '',
         money: '',
         point: '',
       },
@@ -73,6 +75,15 @@ export default {
     }
   },
   computed: {
+    genderStr() {
+      const { gender } = this.info
+      let str = ''
+      if (gender !== '') {
+        str = ['保密','男','女'][gender]
+      }
+
+      return str
+    },
     parentName() {
       return `${this.parent.realname || this.parent.nickname} - ${this.parent.phone}`
     },
@@ -99,12 +110,6 @@ export default {
 
           Object.assign(this.info, res.info)
           Object.assign(this.parent, parent)
-        })
-    },
-    saveInfo() {
-      ajax.put(`/admin/users/${this.id}`, this.form)
-        .then(() => {
-          this.$message.success('保存成功')
         })
     },
   },

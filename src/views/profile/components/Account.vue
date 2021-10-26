@@ -4,9 +4,6 @@
     <el-form-item label="账号">
       <el-input v-model="form.username" class="input" disabled />
     </el-form-item>
-    <el-form-item label="昵称">
-      <el-input v-model="form.nickname" class="input" />
-    </el-form-item>
     <el-form-item label="姓名">
       <el-input v-model="form.realname" class="input" />
     </el-form-item>
@@ -16,7 +13,10 @@
     <el-form-item label="邮箱">
       <el-input v-model="form.email" class="input" />
     </el-form-item>
-    <el-form-item label="密码">
+    <el-form-item label="简介">
+      <el-input v-model="form.intro" class="input" />
+    </el-form-item>
+    <el-form-item label="修改密码">
       <el-input v-model="form.password" class="input" show-password placeholder="请输入新密码" />
     </el-form-item>
     <el-form-item>
@@ -33,8 +33,10 @@ export default {
   components: { UploadImg },
   data() {
     return {
+      api: '/admin/profile',
       form: {
         img: '',
+        intro: '',
         email: '',
         nickname: '',
         realname: '',
@@ -48,13 +50,13 @@ export default {
   },
   methods: {
     getInfo() {
-      ajax.get('/user')
+      ajax.get(this.api)
         .then(res => {
           Object.assign(this.form, res.info)
         })
     },
     submit() {
-      ajax.put('/user', this.form)
+      ajax.put(this.api, this.form)
         .then(() => {
           this.$message.success('保存成功')
           this.form.password = ''

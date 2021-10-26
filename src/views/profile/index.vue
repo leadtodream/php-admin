@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="main-form">
     <el-tabs model-value="tab1">
       <el-tab-pane label="账号信息" name="tab1">
         <Account />
@@ -18,10 +18,5 @@ import LogIn from './components/LogIn'
 export default {
   name: 'Profile',
   components: { Account, LogIn },
-  data() {
-    return {
-      //
-    }
-  },
 }
 </script>

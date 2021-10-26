@@ -9,7 +9,6 @@ import 'element-plus/dist/index.css'
 import 'dayjs/locale/zh-cn'
 import './guard'
 
-
 createApp(App).use(store)
   .use(ElementPlus, { locale, zIndex: 10 })
   .use(Svgs)

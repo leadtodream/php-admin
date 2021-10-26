@@ -1,15 +1,20 @@
 // 授权
-const obj = window.sessionStorage
-const key = 'Authorization'
+const KEY = 'Authorization'
 
 export function getAuth() {
-  return obj.getItem(key)
-}
-
-export function setAuth(auth) {
-  return obj.setItem(key, auth)
+  return localStorage.getItem(KEY) || sessionStorage.getItem(KEY)
 }
 
 export function removeAuth() {
-  return obj.removeItem(key)
+  localStorage.removeItem(KEY)
+  sessionStorage.removeItem(KEY)
+}
+
+export function setAuth(auth, is_autologin = false) {
+  removeAuth()
+  if (is_autologin) {
+    localStorage.setItem(KEY, auth)
+  } else {
+    sessionStorage.setItem(KEY, auth)
+  }
 }

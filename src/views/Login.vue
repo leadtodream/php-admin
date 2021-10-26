@@ -4,8 +4,8 @@
       <legend>{{ title }}</legend>
       <div class="fieldset-container" :class="{translate:type===1}">
         <fieldset>
-          <el-input v-model="form.username" placeholder="账号" />
-          <el-input v-model="form.password" placeholder="密码" show-password @keyup.enter="submit" />
+          <el-input v-model="form.account" placeholder="账号" prefix-icon="el-icon-user" />
+          <el-input v-model="form.password" placeholder="密码" prefix-icon="el-icon-lock" show-password @keyup.enter="submit" />
         </fieldset>
         <fieldset>
           <el-input placeholder="请填写邮箱地址" v-model="form.email">
@@ -18,7 +18,12 @@
         </fieldset>
       </div>
       <el-button class="submit" :loading="is_loading" type="primary" @click="submit">登 录</el-button>
-      <div class="tip" @click="toggleType">{{type?'密码登录！':'忘记密码？'}}</div>
+      <div class="footer">
+        <label class="left">
+          <input type="checkbox" v-model="is_remember">自动登录
+        </label>
+        <div class="right" @click="toggleType">{{type?'密码登录！':'忘记密码？'}}</div>
+      </div>
     </form>
     <p>Powered by Green © 成都优享佳</p>
   </section>
@@ -34,16 +39,17 @@ export default {
   data() {
     return {
       title,
-      text: '发送验证码',
+      text: '获取验证码',
       type: 0,
       form: {
+        account: 'admin',
         code: '',
         email: '',
         password: '123456',
-        username: 'admin',
       },
       is_cooldown: false,
       is_loading: false,
+      is_remember: false,
       is_waiting: false,
     }
   },
@@ -51,7 +57,7 @@ export default {
     countDown(time) {
       if (time === 0) {
         this.is_cooldown = false
-        this.text = '发送验证码'
+        this.text = '获取验证码'
       } else {
         time -= 1
         this.text = `${time}s 后重新发送`
@@ -59,20 +65,19 @@ export default {
       }
     },
     sendCode() {
-      const email = this.form.email
-      if (!email) {
-        return this.$message.error('请填写邮箱')
-      }
-      
       if (this.is_waiting) return
       if (this.is_cooldown) return
       this.is_waiting = true
 
-      ajax.post(`/api/email-code`, { email })
+      ajax.post(`/api/email-code`, { email: this.form.email })
         .then(() => {
-          this.$message.success('邮件发送成功,请注意查收')
           this.is_cooldown = true
           this.countDown(60)
+          this.$notify({
+            title: '发送成功',
+            message: '请注意查收',
+            type: 'success',
+          })
         })
         .catch(() => 1)
         .finally(() => this.is_waiting = false)  
@@ -88,10 +93,11 @@ export default {
 
       ajax.post(url, this.form)
         .then(res => {
-          setAuth(res.Authorization)
+          setAuth(res.Authorization, this.is_remember)
           const url = this.$route.query.redirect || '/dashboard'
           this.$router.push(url)
-          if (this.form.password === '123456') {
+
+          if (0 && this.form.password === '123456') {
             this.$notify({
               title: '安全风险',
               message: '请修改初始密码',
@@ -160,13 +166,24 @@ fieldset {
 
 .submit {
   width: 100%;
-  margin-top: 25px;
 }
 
-.tip {
-  float: right;
-  margin-top: 1em;
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2em;
   color: gray;
-  cursor: pointer;
+  user-select: none;
+
+  .left {
+    cursor: pointer;
+    font-weight: normal;
+  }
+
+  .right {
+    cursor: pointer;
+  }
 }
+
 </style>
