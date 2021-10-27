@@ -3,7 +3,7 @@
     <!-- 表格-头部 -->
     <div class="table-header">
       <el-input v-model="list_query.keyword" placeholder="关键字" />
-      <SelectQueryAdministrator v-model="list_query.admin_id" />
+      <SelectQueryAdmin v-model="list_query.admin_id" />
       <el-button plain type="primary" icon="el-icon-search" @click="listSearch">搜索</el-button>
       <el-button plain icon="el-icon-circle-close" @click="listReset">重置</el-button>
     </div>
@@ -22,12 +22,12 @@
 
 <script>
 import Pagination from '@/components/Pagination'
-import SelectQueryAdministrator from '@/components/SelectQuery/Administrator'
+import SelectQueryAdmin from '@/components/SelectQuery/Admin'
 import methods from '@/assets/methods-list'
 
 export default {
   name: 'LogIn',
-  components: { Pagination, SelectQueryAdministrator },
+  components: { Pagination, SelectQueryAdmin },
   data() {
     return {
       api: '/admin/logs/in',
