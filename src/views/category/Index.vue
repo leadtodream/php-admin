@@ -1,6 +1,6 @@
 <template>
   <section>
-    <el-tabs v-model="module">
+    <el-tabs v-model="model">
       <el-tab-pane label="文章" name="article" />
       <el-tab-pane label="商家" name="shop" />
       <el-tab-pane label="商品" name="shop_goods" />
@@ -37,28 +37,24 @@
       </template>
     </el-tree>
     <!-- 弹窗 -->
-    <DialogCategoryForm ref="dialogCategoryForm" :api="api" @changed="getList" />
+    <DialogForm ref="DialogForm" :api="api" :model="model" @changed="getList" />
   </section>
 </template>
 
 <script>
-import DialogCategoryForm from './components/DialogCategoryForm'
+import DialogForm from './Form'
 import ajax from '@/assets/ajax'
 
 export default {
   name: 'Categories',
-  components: { DialogCategoryForm },
+  components: { DialogForm },
   data() {
     return {
-      module: 'article',
+      api: '/admin/categories',
+      model: 'article',
       keyword: '',
       list: [],
     }
-  },
-  computed: {
-    api() {
-      return `/admin/categories/${this.module}`
-    },
   },
   created() {
     this.getList()
@@ -67,17 +63,17 @@ export default {
     keyword(value) {
       this.$refs['tree'].filter(value)
     },
-    module() {
+    model() {
       this.list = []
       this.getList()
     },
   },
   methods: {
     add(parent_id) {
-      this.$refs['dialogCategoryForm'].show(parent_id)
+      this.$refs['DialogForm'].show(parent_id)
     },
     edit(item) {
-      this.$refs['dialogCategoryForm'].show(item)
+      this.$refs['DialogForm'].show(item)
     },
     del(id) {
       ajax.delete(`${this.api}/${id}`)
@@ -91,7 +87,7 @@ export default {
       return data.name.indexOf(value) !== -1
     },
     getList() {
-      ajax.get(this.api)
+      ajax.get(this.api, { params: { model: this.model }})
         .then(res => {
           this.list = res
         })

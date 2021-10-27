@@ -11,11 +11,13 @@
     </div>
     <!-- 表格-内容 -->
     <el-table ref="table" v-loading="is_loading" :data="list">
+      <el-table-column label="ID" prop="id" width="60" />
       <el-table-column label="账号" prop="username" />
       <el-table-column label="角色" prop="role.name" />
+      <el-table-column label="姓名" prop="realname" />
       <el-table-column label="电话" prop="phone" />
       <el-table-column label="邮箱" prop="email" />
-      <el-table-column label="简介" prop="intro" />
+      <el-table-column label="备注" prop="remark" />
       <el-table-column label="是否封禁" width="150">
         <template #default="scope">
           <el-switch v-model="scope.row.is_ban" active-color="#ff4949" @change="patchBan(scope.row.id)" />

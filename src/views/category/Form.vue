@@ -22,20 +22,20 @@ import UploadImg from '@/components/UploadImg'
 import ajax from '@/assets/ajax'
 
 export default {
-  name: 'DialogCategoryForm',
   components: { UploadImg },
   data() {
     return {
       id: 0,
       form: {
         img: '',
+        model: '',
         name: '',
         parent_id: 0,
       },
       is_show: false,
     }
   },
-  props: ['api'],
+  props: ['api','model'],
   methods: {
     show(info) {
       if (typeof info === 'object') {
@@ -60,6 +60,7 @@ export default {
         method = 'put'
         url = `${url}/${this.id}`
       }
+      data.model = this.model
 
       ajax({ method, url, data })
         .then(() => {
@@ -67,6 +68,7 @@ export default {
           this.is_show = false
           this.$emit('changed')
         })
+        .catch(() => 1)
     },
   },
 }

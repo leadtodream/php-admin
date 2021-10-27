@@ -13,9 +13,6 @@
     <el-form-item label="邮箱">
       <el-input v-model="form.email" class="input" />
     </el-form-item>
-    <el-form-item label="简介">
-      <el-input v-model="form.intro" class="input" />
-    </el-form-item>
     <el-form-item label="修改密码">
       <el-input v-model="form.password" class="input" show-password placeholder="请输入新密码" />
     </el-form-item>
@@ -36,9 +33,8 @@ export default {
       api: '/admin/profile',
       form: {
         img: '',
-        intro: '',
         email: '',
-        nickname: '',
+        username: '',
         realname: '',
         password: '',
         phone: '',

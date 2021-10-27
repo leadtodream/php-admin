@@ -17,6 +17,7 @@
       @selection-change="listSelect"
     >
       <el-table-column type="selection" width="50" />
+      <el-table-column label="ID" prop="id" width="60" />
       <el-table-column label="标题" prop="name" />
       <el-table-column label="创建时间" prop="created_at" width="200" />
       <el-table-column label="更新时间" prop="updated_at" width="200" />

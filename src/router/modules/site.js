@@ -42,23 +42,23 @@ export default {
       ],
     },
     {
-      path: '/site/faq',
+      path: '/site/faqs',
       name: 'Faq',
       component: () => import('@/views/site/faq/List'),
       meta: { title: '常见问题' },
       children: [
         {
-          path: '/site/faq/add',
+          path: '/site/faqs/add',
           name: 'FaqAdd',
           component: () => import('@/views/site/faq/Form'),
-          meta: { title: '添加', activeMenu: '/site/faq' },
+          meta: { title: '添加', activeMenu: '/site/faqs' },
           hidden: true,
         },
         {
-          path: '/site/faq/:id(\\d+)/edit',
+          path: '/site/faqs/:id(\\d+)/edit',
           name: 'FaqEdit',
           component: () => import('@/views/site/faq/Form'),
-          meta: { title: '编辑', activeMenu: '/site/faq' },
+          meta: { title: '编辑', activeMenu: '/site/faqs' },
           hidden: true,
         },
       ],

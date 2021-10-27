@@ -5,17 +5,11 @@
         <el-form-item label="账号" required>
           <el-input v-model="form.username" />
         </el-form-item>
-        <el-form-item label="密码" :required="id===0">
+        <el-form-item label="密码">
           <el-input v-model="form.password" />
         </el-form-item>
-        <el-form-item label="电话">
-          <el-input v-model="form.phone" />
-        </el-form-item>
-        <el-form-item label="邮箱">
-          <el-input v-model="form.email" />
-        </el-form-item>
-        <el-form-item label="简介">
-          <el-input v-model="form.intro" />
+        <el-form-item label="备注">
+          <el-input v-model="form.remark" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -34,10 +28,8 @@ export default {
     return {
       id: 0,
       form: {
-        email: '',
-        intro: '',
         password: '',
-        phone: '',
+        remark: '',
         username: '',
       },
       form_copy: {},
@@ -75,6 +67,7 @@ export default {
           this.is_show = false
           this.$emit('changed')
         })
+        .catch(() => 1)
     },
   },
 }

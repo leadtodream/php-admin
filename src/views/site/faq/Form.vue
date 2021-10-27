@@ -5,7 +5,7 @@
         <el-input v-model="form.name" />
       </el-form-item>
       <el-form-item label="内容" required>
-        <Tinymce v-model="form.html" module="html_faq" />
+        
       </el-form-item>
     </el-form>
     <el-footer>
@@ -16,12 +16,10 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce'
 import methods from '@/assets/methods-form'
 
 export default {
   name: 'FaqForm',
-  components: { Tinymce },
   data() {
     return {
       api: '/admin/faqs',
@@ -34,7 +32,7 @@ export default {
     }
   },
   created() {
-    this.init()
+    // this.init()
   },
   methods: {
     ...methods,

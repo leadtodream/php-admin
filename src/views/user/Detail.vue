@@ -8,22 +8,22 @@
             <span>昵称：</span>{{ info.nickname }}
           </div>
           <div class="item">
-            <span>姓名：</span>{{ info.realname }}
+            <span>姓名：</span>{{ info.realname || '-' }}
           </div>
           <div class="item">
             <span>性别：</span>{{ genderStr }}
           </div>
           <div class="item">
-            <span>生日：</span>{{ info.birthday }}
+            <span>生日：</span>{{ info.birthday || '-' }}
           </div>
           <div class="item">
-            <span>手机号：</span>{{ info.phone }}
+            <span>邮箱：</span>{{ info.email || '-' }}
           </div>
           <div class="item">
-            <span>邮箱：</span>{{ info.email }}
+            <span>手机号：</span>{{ info.phone || '-' }}
           </div>
           <div class="item">
-            <span>所在地：</span>{{ info.region }}
+            <span>所在地：</span>{{ regionStr }}
           </div>
           <div class="item">
             <span>余额：</span>￥{{ info.money }}
@@ -86,6 +86,11 @@ export default {
     },
     parentName() {
       return `${this.parent.realname || this.parent.nickname} - ${this.parent.phone}`
+    },
+    regionStr() {
+      const { country, province, city } = this.info
+
+      return (!country && !province && !city) ? '-' : `${country} ${province} ${city}`
     },
   },
   created() {

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <el-dialog title="角色信息" v-model="is_show">
+    <el-dialog title="角色信息" width="500px" v-model="is_show">
       <el-form label-width="4em">
         <el-form-item label="名称" required>
           <el-input v-model="form.name" />
         </el-form-item>
-        <el-form-item label="简介">
-          <el-input v-model="form.intro" />
+        <el-form-item label="备注">
+          <el-input v-model="form.remark" />
         </el-form-item>
         <el-form-item label="权限">
           <el-tree
@@ -42,8 +42,8 @@ export default {
       id: 0,
       form: {
         name: '',
-        intro: '',
         privileges: [],
+        remark: '',
       },
       list_privilege: [],
       list_privilege_node: [],
@@ -113,6 +113,7 @@ export default {
           this.is_show = false
           this.$emit('changed')
         })
+        .catch(() => 1)
     },
   },
 }

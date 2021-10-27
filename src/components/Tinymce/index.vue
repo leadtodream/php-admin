@@ -55,7 +55,7 @@ export default {
     }
   },
   mounted() {
-    this.listInit()
+    this.init()
   },
   activated() {
     if (window.tinymce) {

@@ -29,19 +29,24 @@ router.beforeEach(async (to, from, next) => {
       if (store.state.user.privileges) {
         next()
       } else {
-        // 查询用户权限
-        const privileges = await store.dispatch('user/getInfo')
-        if (privileges.length) {
-          // 分配路由
-          const routes = await store.dispatch('privilege/generateRoutes', privileges)
+        try {
+          // 查询用户权限
+          const privileges = await store.dispatch('user/getInfo')
+          if (privileges.length) {
+            // 分配路由
+            const routes = await store.dispatch('privilege/generateRoutes', privileges)
 
-          // dynamically add accessible routes
-          routes.forEach(i => router.addRoute(i))
+            // dynamically add accessible routes
+            routes.forEach(i => router.addRoute(i))
+          }
+
+          // hack method to ensure that addRoutes is complete
+          // set the replace: true, so the navigation will not leave a history record
+          next({ ...to, replace: true })
+        } catch (error) {
+          next(`/login?redirect=${to.path}`)
+          NProgress.done()
         }
-
-        // hack method to ensure that addRoutes is complete
-        // set the replace: true, so the navigation will not leave a history record
-        next({ ...to, replace: true })
       }
     }
   } else {

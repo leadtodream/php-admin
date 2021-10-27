@@ -11,8 +11,9 @@
     </div>
     <!-- 表格-内容 -->
     <el-table ref="table" v-loading="is_loading" :data="list">
+      <el-table-column label="ID" prop="id" width="60" />
       <el-table-column label="名称" prop="name" />
-      <el-table-column label="简介" prop="intro" />
+      <el-table-column label="备注" prop="remark" />
       <el-table-column label="是否封禁" width="150">
         <template #default="scope">
           <el-switch v-model="scope.row.is_ban" active-color="#ff4949" @change="patchBan(scope.row.id)" />
