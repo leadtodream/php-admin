@@ -27,11 +27,11 @@ import SelectQueryAdmin from '@/components/SelectQuery/Admin'
 import methods from '@/assets/methods-list'
 
 export default {
-  name: 'LogOperation',
+  name: 'LogOperate',
   components: { Pagination, SelectQueryAdmin },
   data() {
     return {
-      api: '/admin/logs/operation',
+      api: '/admin/logs/operate',
       total: 0,
       list: [],
       list_query: {

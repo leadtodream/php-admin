@@ -20,9 +20,9 @@ export default {
       meta: { title: '登录日志' },
     },
     {
-      path: '/logs/operation',
-      name: 'LogOperation',
-      component: () => import('@/views/log/Operation'),
+      path: '/logs/operate',
+      name: 'LogOperate',
+      component: () => import('@/views/log/Operate'),
       meta: { title: '操作日志' },
     },
     {
