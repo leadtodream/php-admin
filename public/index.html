@@ -9,8 +9,10 @@
   </head>
   <body>
     <div id="app"></div>
+    <script src="./tinymce/tinymce.min.js"></script>
     <script>
-      (() => {// 新打开窗口,sessionStorage不共享问题
+      // 新打开窗口,sessionStorage不共享问题
+      (() => {
         if (!sessionStorage.length) {
           localStorage.setItem('getSessionStorage', Date.now())
         }

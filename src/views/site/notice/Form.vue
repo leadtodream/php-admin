@@ -5,7 +5,7 @@
         <el-input v-model="form.name" />
       </el-form-item>
       <el-form-item label="内容" required>
-        <tinymce v-model="form.html" module="html_notice" />
+        <tinymce v-model="form.html" />
       </el-form-item>
     </el-form>
     <el-footer>

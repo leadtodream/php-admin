@@ -59,7 +59,7 @@
           <GoodsSku v-model="list_sku" />
         </el-tab-pane>
         <el-tab-pane label="图文详情" name="description">
-          <tinymce v-model="form.html" module="html_notice" />
+          <tinymce v-model="form.html" />
         </el-tab-pane>
       </el-tabs>
       <el-form-item class="text-r">

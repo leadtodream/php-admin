@@ -104,7 +104,7 @@
       <el-tab-pane label="腾讯位置服务" name="tencent_map">
         <div class="item">
           <label>应用 Key</label>
-          <el-input v-model="form.tencent_map.key" />
+          <el-input v-model="form.tencent_map" />
         </div>
         <a class="el-link el-link--info" href="https://lbs.qq.com/dev/console/application/mine" target="_blank">如何获取？</a>
       </el-tab-pane>
@@ -149,7 +149,7 @@ export default {
         aliyun: {id:'',secret:''},
         qiniu: {access_key:'',bucket:'',bucket_host:'',secret_key:''},
         tencent: {id:'',key:''},
-        tencent_map: {key:''},
+        tencent_map: '',
         tencent_sms: {id:'',key:''},
         weixin_app: {app_id:'',app_secret:''},
         weixin_h5: {app_id:'',app_secret:''},

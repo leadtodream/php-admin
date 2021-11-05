@@ -1,6 +1,6 @@
 <template>
   <el-form label-width="5em">
-    <UploadImg v-model="form.img" class="avatar" width="150px" module="user" />
+    <UploadImg v-model="form.img" class="avatar" width="150px" module="avatar" />
     <el-form-item label="账号">
       <el-input v-model="form.username" class="input" disabled />
     </el-form-item>
