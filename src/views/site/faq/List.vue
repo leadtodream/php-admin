@@ -48,6 +48,7 @@ export default {
       api: '/admin/faqs',
       total: 0,
       list: [],
+      list_checked: [],
       list_query: {
         page: 1,
         size: 10,

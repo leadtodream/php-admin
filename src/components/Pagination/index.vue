@@ -5,7 +5,7 @@
       :background="true"
       :current-page="page"
       :page-sizes="[5, 10, 25, 50]"
-      :page-size="10"
+      :page-size="size"
       :total="total"
       @current-change="changePage"
       @size-change="changeSize" />
