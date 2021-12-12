@@ -1,10 +1,10 @@
 <template>
-  <section>
-    <el-form label-width="80px">
+  <section class="main-form">
+    <el-form label-width="6em">
       <el-form-item label="模板名称" required>
         <el-input v-model="form.name" />
       </el-form-item>
-      <el-form-item label="计费方式">
+      <el-form-item label="计价方式">
         <el-radio-group v-model="form.type" :disabled="id>0">
           <el-radio :label="0">按件数</el-radio>
           <el-radio :label="1">按重量</el-radio>
@@ -48,10 +48,10 @@
 import methods from '@/assets/methods-form'
 
 export default {
-  name: 'ShopFreightForm',
+  name: 'FreightForm',
   data() {
     return {
-      api: '/admin/shop/freights',
+      api: '/admin/freights',
       id: 0,
       form: {
         name: '',

@@ -115,7 +115,22 @@ function uploadImage(file, module = '') {
   })
 }
 
+// 上传视频
+function uploadVideo(file, module = '') {
+  return new Promise((resolve, reject) => {
+    const form = new FormData()
+    form.append('file', file)
+    form.append('module', module)
+    instance.post('/admin/upload/video', form)
+      .then(res => {
+        resolve(res.url)
+      })
+      .catch(() => reject())
+  })
+}
+
 export default instance
 export {
   uploadImage,
+  uploadVideo,
 }

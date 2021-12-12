@@ -30,7 +30,7 @@ export default {
       parent_id: '',
       list_user: [],
       is_show: false,
-      is_waiting: false,
+      is_submitting: false,
     }
   },
   methods: {
@@ -41,8 +41,8 @@ export default {
       this.is_show = true
     },
     submit() {
-      if (this.is_waiting) return
-      this.is_waiting = true
+      if (this.is_submitting) return
+      this.is_submitting = true
 
       ajax.patch(`/admin/users/${this.user_id}/parent`, { parent_id: this.parent_id })
         .then(() => {
@@ -50,7 +50,7 @@ export default {
           this.is_show = false
           this.$emit('changed')
         })
-        .finally(() => this.is_waiting = false)
+        .finally(() => this.is_submitting = false)
     },
   },
 }

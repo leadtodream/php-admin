@@ -2,6 +2,11 @@
   <div>
     <el-dialog title="管理员信息" width="500px" v-model="is_show">
       <el-form label-width="5em">
+        <el-form-item label="角色" required>
+            <el-select v-model="form.role_id">
+              <el-option v-for="i in roles" :key="i.id" :label="i.name" :value="i.id" />
+            </el-select>
+        </el-form-item>
         <el-form-item label="账号" required>
           <el-input v-model="form.username" />
         </el-form-item>
@@ -22,6 +27,7 @@
 
 <script>
 import ajax from '@/assets/ajax'
+import { assignForm } from '@/assets/methods'
 
 export default {
   data() {
@@ -30,13 +36,14 @@ export default {
       form: {
         password: '',
         remark: '',
+        role_id: '',
         username: '',
       },
       form_copy: {},
       is_show: false,
     }
   },
-  props: ['api'],
+  props: ['api','roles'],
   created() {
     Object.assign(this.form_copy, this.form)
   },
@@ -44,7 +51,10 @@ export default {
     show(info) {
       if (info) {
         this.id = info.id
-        Object.assign(this.form, info)
+        if (!info.role_id) {
+          info.role_id = ''
+        }
+        assignForm(this.form, info)
       } else {
         this.id = 0
         Object.assign(this.form, this.form_copy)

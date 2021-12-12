@@ -22,10 +22,10 @@
         <label class="left">
           <input type="checkbox" v-model="is_remember">自动登录
         </label>
-        <div class="right" @click="toggleType">{{type?'密码登录！':'忘记密码？'}}</div>
+        <div class="right" @click="toggleType">{{type?'密码登录!':'忘记密码？'}}</div>
       </div>
     </form>
-    <p>Powered by Green © 成都优享佳</p>
+    <p>Powered by Green © 绿·静·風</p>
   </section>
 </template>
 

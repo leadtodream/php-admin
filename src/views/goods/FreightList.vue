@@ -12,7 +12,7 @@
     <!-- 列表 -->
     <el-table v-loading="is_loading" :data="list">
       <el-table-column label="模板名称" prop="name" width="200" />
-      <el-table-column label="计费类型" prop="type_str" />
+      <el-table-column label="计价方式" prop="type_str" />
       <el-table-column label="默认运费" prop="calc" />
       <el-table-column label="包邮条件" prop="free" />
       <el-table-column label="创建时间" prop="created_at" width="160" />
@@ -34,11 +34,11 @@ import Pagination from '@/components/Pagination'
 import methods from '@/assets/methods-list'
 
 export default {
-  name: 'ShopFreightList',
+  name: 'FreightList',
   components: { Pagination },
   data() {
     return {
-      api: '/admin/shop/freights',
+      api: '/admin/freights',
       total: 0,
       list: [],
       list_query: {

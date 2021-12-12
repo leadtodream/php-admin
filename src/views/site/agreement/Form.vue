@@ -30,7 +30,7 @@ export default {
         name: '',
         html: '',
       },
-      is_waiting: false,
+      is_submitting: false,
     }
   },
   created() {

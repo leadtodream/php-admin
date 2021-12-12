@@ -36,27 +36,5 @@ export default {
         },
       ],
     },
-    {
-      path: '/shops/freights',
-      name: 'ShopFreightList',
-      component: () => import('@/views/shop-freight/List'),
-      meta: { title: '运费模板' },
-      children: [
-        {
-          path: '/shops/freights/add',
-          name: 'ShopFreightAdd',
-          component: () => import('@/views/shop-freight/Form'),
-          meta: { title: '添加', activeMenu: '/shops/freights' },
-          hidden: true,
-        },
-        {
-          path: '/shops/freights/:id(\\d+)/edit',
-          name: 'ShopFreightEdit',
-          component: () => import('@/views/shop-freight/Form'),
-          meta: { title: '编辑', activeMenu: '/shops/freights' },
-          hidden: true,
-        },
-      ],
-    },
   ],
 }

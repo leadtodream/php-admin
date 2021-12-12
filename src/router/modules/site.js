@@ -14,12 +14,6 @@ export default {
       meta: { title: '轮播图' },
     },
     {
-      path: '/site/banners',
-      name: 'Banner',
-      component: () => import('@/views/site/Banner'),
-      meta: { title: '横幅广告' },
-    },
-    {
       path: '/site/notices',
       name: 'Notice',
       component: () => import('@/views/site/notice/List'),

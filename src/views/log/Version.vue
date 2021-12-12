@@ -51,7 +51,7 @@ export default {
   components: { Pagination, UploadFile },
   data() {
     return {
-      api: '/admin/logs/version',
+      api: '/admin/versions',
       total: 0,
       list: [],
       list_query: {

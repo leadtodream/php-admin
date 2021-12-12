@@ -14,11 +14,14 @@
       ref="table"
       v-loading="is_loading"
       :data="list"
-      @selection-change="listSelect"
     >
-      <el-table-column type="selection" width="50" />
       <el-table-column label="ID" prop="id" width="60" />
       <el-table-column label="标题" prop="name" />
+      <el-table-column label="是否显示" width="200">
+        <template #default="scope">
+          <el-switch v-model="scope.row.is_show" @change="patchShow(scope.row.id)" />
+        </template>
+      </el-table-column>
       <el-table-column label="创建时间" prop="created_at" width="200" />
       <el-table-column label="更新时间" prop="updated_at" width="200" />
       <el-table-column label="操作" align="center" width="200" class-name="table-column-action">
@@ -29,15 +32,13 @@
       </el-table-column>
     </el-table>
     <!-- 表格-底部 -->
-    <div v-show="list.length" class="table-footer">
-      <el-button type="danger" size="small" plain @click="delRows">批量删除</el-button>
-    </div>
     <pagination v-model:page="list_query.page" v-model:size="list_query.size" :total="total" @changed="getList" />
   </section>
 </template>
 
 <script>
 import Pagination from '@/components/Pagination'
+import ajax from '@/assets/ajax'
 import methods from '@/assets/methods-list'
 
 export default {
@@ -64,6 +65,13 @@ export default {
   },
   methods: {
     ...methods,
+    patchShow(id) {
+      ajax.patch(`${this.api}/${id}/show`)
+        .then(() => {
+          this.$message.success('操作成功')
+        })
+        .catch(() => 1)
+    },
   },
 }
 </script>

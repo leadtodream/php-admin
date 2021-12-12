@@ -35,7 +35,7 @@ export default {
         remark: '',
       },
       is_show: false,
-      is_waiting: false,
+      is_submitting: false,
     }
   },
   methods: {
@@ -47,8 +47,8 @@ export default {
       this.is_show = true
     },
     submit() {
-      if (this.is_waiting) return
-      this.is_waiting = true
+      if (this.is_submitting) return
+      this.is_submitting = true
 
       const data = { ...this.form }
       data.money *= this.sign
@@ -59,7 +59,7 @@ export default {
           this.is_show = false
           this.$emit('changed')
         })
-        .finally(() => this.is_waiting = false)
+        .finally(() => this.is_submitting = false)
     },
   },
 }

@@ -36,7 +36,7 @@ export default {
         file: '',
         date: '',
       },
-      is_waiting: false,
+      is_submitting: false,
     }
   },
   created() {

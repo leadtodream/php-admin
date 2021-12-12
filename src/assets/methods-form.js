@@ -7,7 +7,9 @@ const methods = {
   // 赋值表单
   assignForm(info) {
     for (const i in this.form) {
-      this.form[i] = info[i]
+      if (Object.hasOwn(info, i)) {
+        this.form[i] = info[i]
+      }
     }
   },
   // 关闭页面

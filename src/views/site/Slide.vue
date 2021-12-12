@@ -4,15 +4,18 @@
       <el-button type="primary" @click="chooseImg(null)">添加轮播图</el-button>
     </el-header>
     <ul class="list">
-      <li v-for="(item,index) in list" :key="index" class="item">
-        <img :src="item.img" class="image pointer" @click="chooseImg(index)">
+      <li v-for="(i,index) in list" :key="index" class="item">
+        <img :src="i.img" class="image pointer" @click="chooseImg(index)">
         <div>
-          <el-input v-model="item.link" maxlength="100">
+          <el-input v-model="i.link" maxlength="100">
             <template #prepend>链接：</template>
           </el-input>
-          <el-input v-model="item.sort" type="number" min="-100" max="100" placeholder="数值越大越靠前">
+          <el-input v-model="i.sort" type="number" min="-100" max="100" placeholder="数值越大越靠前">
             <template #prepend>排序：</template>
           </el-input>
+          <div class="switch">
+            是否显示：<el-switch v-model="i.is_show" />
+          </div>
         </div>
         <div>
           <el-button type="primary" size="mini" plain @click="edit(index)">保存</el-button>
@@ -96,6 +99,7 @@ export default {
   padding: 0;
   margin: 0 20px;
 }
+
 .item {
   display: flex;
   margin-bottom: 15px;
@@ -114,5 +118,10 @@ export default {
   > div:last-child {
     width: 130px;
   }
+}
+
+.switch {
+  margin: 15px 0 0 5px;
+  font-size: 14px;
 }
 </style>

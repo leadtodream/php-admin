@@ -16,7 +16,6 @@
       <el-table-column label="角色" prop="role.name" />
       <el-table-column label="姓名" prop="realname" />
       <el-table-column label="电话" prop="phone" />
-      <el-table-column label="邮箱" prop="email" />
       <el-table-column label="备注" prop="remark" />
       <el-table-column label="是否封禁" width="150">
         <template #default="scope">
@@ -37,7 +36,7 @@
     <!-- 表格-底部 -->
     <pagination v-model:page="list_query.page" v-model:size="list_query.size" :total="total" @changed="getList" />
     <!-- 弹窗 -->
-    <DialogAdminForm ref="DialogAdminForm" :api="api" @changed="getList" />
+    <DialogAdminForm ref="DialogAdminForm" :api="api" :roles="list_role" @changed="getList" />
   </section>
 </template>
 
@@ -52,7 +51,7 @@ export default {
   components: { DialogAdminForm, Pagination },
   data() {
     return {
-      api: '/admin/administrators',
+      api: '/admin/admins',
       total: 0,
       list: [],
       list_query: {
@@ -60,14 +59,23 @@ export default {
         size: 10,
         name: '',
       },
+      list_role: [],
       is_loading: false,
     }
   },
   created() {
     this.listInit()
+    this.getRoles()
   },
   methods: {
     ...methods,
+    getRoles() {
+      ajax.get('/admin/roles/query')
+        .then(res => {
+          this.list_role = res
+        })
+        .catch(() => 1)
+    },
     patchBan(id) {
       ajax.patch(`${this.api}/${id}/ban`)
         .then(() => {

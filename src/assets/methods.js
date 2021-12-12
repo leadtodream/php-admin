@@ -4,6 +4,13 @@ import Swal from 'sweetalert2'
 import Xlsx from 'xlsx'
 import { ElMessage as Message } from 'element-plus'
 
+// 赋值
+function assignForm(form, data) {
+  for (const i in form) {
+    form[i] = data[i]
+  }
+}
+
 // 审核
 function confirmCheck() {
   return new Promise((resolve, reject) => {
@@ -115,6 +122,7 @@ function xlsx2json(file) {
 }
 
 export {
+  assignForm,
   confirmCheck,
   copyText,
   json2xlsx,

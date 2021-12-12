@@ -47,7 +47,7 @@ export default {
       ajax.post('/upload', form, { onUploadProgress: this.uploadProgress })
         .then(res => {
           this.filename = files[0].name
-          this.$emit('input', res.filename)
+          this.$emit('update:modelValue', res.filename)
         })
         .catch(() => 1)
         .finally(() => {

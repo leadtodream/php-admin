@@ -46,7 +46,7 @@ export default {
         uploadImage(files[0], this.module)
           .then(res => {
             this.$emit('update:modelValue', res)
-            this.$emit('changed')
+            this.$emit('changed', res)
           })
           .finally(() => {
             this.$refs['input'].value = null

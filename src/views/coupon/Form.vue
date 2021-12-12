@@ -100,7 +100,7 @@ export default {
         valid_time: '',
         valid_type: 0,
       },
-      is_waiting: false,
+      is_submitting: false,
     }
   },
   created() {
