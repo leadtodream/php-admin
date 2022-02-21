@@ -57,6 +57,28 @@ export default {
   },
   methods: {
     ...methods,
+    formatList(list) {
+      list.forEach(i => {
+        const unit = ['件','kg','m³'][i.type]
+        let calc = ''
+        let free = ''
+        calc = `${i.calc.unit}${unit} 内 ${i.calc.fee}元`
+        calc = `${calc}，每增加 ${i.calc.add_unit}${unit} 加 ${i.calc.add_fee}元`
+        if (i.free.fee) {
+          free = `满${i.free.fee}元`
+        }
+        if (i.free.unit) {
+          if (free) {
+            free = `${free}; 或`
+          }
+          free = `${free}满${i.free.unit}${unit}`
+        }
+
+        i.calc = calc
+        i.free = free
+        i.type_str = ['按件数','按重量','按体积'][i.type]
+      })
+    },
   },
 }
 </script>

@@ -57,13 +57,21 @@ export default {
       const imgs = res.info.imgs
       this.list_img.push(...imgs)
       this.assignForm(res.info)
-      if (res.skus) {
+      if (res.skus[0].attrs) {
         this.$refs['GoodsSku'].formatSkus(res.skus)
       }
     },
     formatForm(data) {
+      const skus = this.list_sku.filter(i => i.is_sale)
+      if (!skus.length) {
+        skus.push({
+          price: this.form.price,
+          stock: this.form.stock,
+        })
+      }
+
       data.imgs = this.list_img
-      data.skus = this.list_sku.filter(i => i.is_sale)
+      data.skus = skus
     },
   },
 }
